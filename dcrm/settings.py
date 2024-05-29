@@ -1,11 +1,19 @@
 from pathlib import Path
-import nltk
-nltk.download('stopwords')
+import os
+
+# Базова директорія проекту
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-56j7e@6)s$df43_zatdfin%bsqmue%lm%sx-6m=72*ek7+r1w5'
+
+# Секретний ключ проекту
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-56j7e@6)s$df43_zatdfin%bsqmue%lm%sx-6m=72*ek7+r1w5')
+
+# Режим налагодження
 DEBUG = True
 
+# Дозволені хости
 ALLOWED_HOSTS = []
+
+# Встановлені додатки
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -16,6 +24,7 @@ INSTALLED_APPS = [
     'website',
 ]
 
+# Проміжне програмне забезпечення (Middleware)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -26,8 +35,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Корінь URL конфігурації
 ROOT_URLCONF = 'dcrm.urls'
 
+# Налаштування шаблонів
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -44,8 +55,10 @@ TEMPLATES = [
     },
 ]
 
+# ASGI або WSGI додаток
 WSGI_APPLICATION = 'dcrm.wsgi.application'
 
+# Налаштування бази даних
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -54,8 +67,10 @@ DATABASES = {
         'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '3306',
-        }
+    }
 }
+
+# Хешери паролів
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
@@ -63,6 +78,8 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
     'django.contrib.auth.hashers.BCryptPasswordHasher',
 ]
+
+# Валідатори паролів
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -77,15 +94,25 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Налаштування локалізації
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-SITE_HEADER = "Kursova"
+
+# Налаштування статичних файлів
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_URL = '/static/'
-
+# Додаткові налаштування
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Заголовок сайту адміністратора
+SITE_HEADER = "Kyrs"
+
+# Завантаження stopwords для NLTK
+import nltk
+nltk.download('stopwords')
