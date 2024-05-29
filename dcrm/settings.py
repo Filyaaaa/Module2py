@@ -116,3 +116,4 @@ SITE_HEADER = "Kyrs"
 # Завантаження stopwords для NLTK
 import nltk
 nltk.download('stopwords')
+
