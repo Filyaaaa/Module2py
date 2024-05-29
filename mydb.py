@@ -1,12 +1,12 @@
 import mysql.connector
 
 dataBase = mysql.connector.connect(
-host = 'localhost',
+host = '127.0.0.1',
 user = 'root',
-passwd = '010405'
+passwd = ''
 
 	)
 cursorObject = dataBase.cursor()
-cursorObject.execute("CREATE DATABASE lab5")
+cursorObject.execute("CREATE DATABASE module2")
 
 print("All Done!")
