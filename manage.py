@@ -2,10 +2,10 @@
 import os
 import sys
 
-
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dcrm.settings')
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -14,8 +14,16 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
     execute_from_command_line(sys.argv)
 
-
 if __name__ == '__main__':
+    if os.name == 'nt':
+        print("Running on Windows")
+        venv_path = os.path.join(os.path.dirname(__file__), 'venv', 'Scripts')
+        if os.path.exists(venv_path):
+            os.environ["PATH"] = venv_path + os.pathsep + os.environ["PATH"]
+        else:
+            print("Virtual environment not found. Please create and activate a virtual environment.")
+    
     main()
